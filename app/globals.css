@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0A0F1E;
+  --foreground: #ffffff;
+  --card: #111827;
+  --card-foreground: #ffffff;
+  --primary: #2563EB;
+  --primary-foreground: #ffffff;
+  --secondary: #1e293b;
+  --secondary-foreground: #94a3b8;
+  --accent: #3b82f6;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.06);
+  --ring: #2563EB;
+  --muted: #1e293b;
+  --muted-foreground: #64748b;
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent;
+  }
+
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-all duration-200 rounded-lg;
+  }
+
+  .btn-secondary {
+    @apply bg-white/10 hover:bg-white/15 text-white border border-white/10 font-medium transition-all duration-200 rounded-lg;
+  }
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Animate glow */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(37, 99, 235, 0.4); }
+}
+
+.animate-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Skeleton loading */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
