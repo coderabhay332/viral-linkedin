@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+export const maxDuration = 60; // allow up to 60s for AI generation (Vercel Hobby supports 60s)
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerSupabaseClient } from '@/lib/supabase';
 import { callPerplexity, safeParseJSON } from '@/lib/perplexity';
@@ -64,7 +65,7 @@ export async function POST(req: NextRequest) {
         } catch { /* non-fatal */ }
 
         const prompt = buildIdeaPrompt(profile, viralPostExamples);
-        const { content, tokensUsed } = await callPerplexity(prompt, 8192, 0.8);
+        const { content, tokensUsed } = await callPerplexity(prompt, 3000, 0.8);
 
         const parsed = safeParseJSON<{ ideas: GeneratedIdea[] }>(content);
         if (!parsed || !parsed.ideas || !Array.isArray(parsed.ideas)) {

@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { callPerplexity, safeParseJSON } from '@/lib/perplexity';
-
+export const maxDuration = 60;
 interface LinkedInAnalysis {
     industry: string;
     role: string;
